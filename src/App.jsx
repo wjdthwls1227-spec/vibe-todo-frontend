@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-const API_BASE_URL = 'http://localhost:5000/todos'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://vibe-todo-backand.onrender.com/todos'
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -32,7 +32,7 @@ function App() {
         setError(`백엔드 서버에 연결할 수 없습니다. 
         
 확인 사항:
-1. 백엔드 서버가 localhost:5000에서 실행 중인지 확인
+1. 백엔드 서버가 정상적으로 실행 중인지 확인
 2. 브라우저 콘솔(F12)에서 Network 탭 확인
 3. CORS 설정 확인
 
@@ -78,7 +78,7 @@ function App() {
       setNewTodoTitle('')
     } catch (err) {
       if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
-        setError('백엔드 서버에 연결할 수 없습니다. localhost:5000에서 서버가 실행 중인지 확인해주세요.')
+        setError('백엔드 서버에 연결할 수 없습니다. 서버가 정상적으로 실행 중인지 확인해주세요.')
       } else {
         setError(err.message)
       }
